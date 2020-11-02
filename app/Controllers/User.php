@@ -59,4 +59,45 @@ class User extends ResourceController
             return $this->respond($response, 200);
         }
     }
+
+    public function getUserBy($id)
+    {
+        $data = $this->user->getUser($id);
+    
+        $user = [
+            'id' => intval($data['id']),
+            'fullname' => $data['fullname'],
+            'gender' => $data['gender'],
+            'grade' => $data['grade'],
+            'phone' => $data['phone'] 
+        ];       
+        return $this->respond($user, 200);   
+    }
+
+    public function update($id = NULL)
+    {
+        $fullname   = $this->request->getPost('fullname');
+        $grade      = $this->request->getPost('grade');
+        $gender     = $this->request->getPost('gender');
+        $phone      = $this->request->getPost('phone');
+        
+        $data = [
+            'fullname' => $fullname,
+            'grade' => $grade,
+            'gender' => $gender,
+            'phone' => $phone
+        ];
+        
+        $simpan = $this->model->updateUser($data, $id);
+        
+        if($simpan){
+            $msg = ['message' => 'Updated user successfully'];
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'data' => $msg,
+            ];
+            return $this->respond($response, 200);
+        }
+    }
 }
