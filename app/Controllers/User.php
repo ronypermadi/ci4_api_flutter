@@ -24,7 +24,7 @@ class User extends ResourceController
                 'id' => intval($row->id),
                 'fullname' => $row->fullname,
                 'gender' => $row->gender,
-                'grade' => $row->grade,
+                'jenjang' => $row->jenjang,
                 'phone' => $row->phone 
             ];
             
@@ -36,13 +36,13 @@ class User extends ResourceController
     public function create()
     {
         $fullname   = $this->request->getPost('fullname');
-        $grade      = $this->request->getPost('grade');
+        $jenjang      = $this->request->getPost('jenjang');
         $gender     = $this->request->getPost('gender');
         $phone      = $this->request->getPost('phone');
         
         $data = [
             'fullname' => $fullname,
-            'grade' => $grade,
+            'jenjang' => $jenjang,
             'gender' => $gender,
             'phone' => $phone
         ];
@@ -68,7 +68,7 @@ class User extends ResourceController
             'id' => intval($data['id']),
             'fullname' => $data['fullname'],
             'gender' => $data['gender'],
-            'grade' => $data['grade'],
+            'jenjang' => $data['jenjang'],
             'phone' => $data['phone'] 
         ];       
         return $this->respond($user, 200);   
@@ -77,13 +77,13 @@ class User extends ResourceController
     public function update($id = NULL)
     {
         $fullname   = $this->request->getPost('fullname');
-        $grade      = $this->request->getPost('grade');
+        $jenjang      = $this->request->getPost('jenjang');
         $gender     = $this->request->getPost('gender');
         $phone      = $this->request->getPost('phone');
         
         $data = [
             'fullname' => $fullname,
-            'grade' => $grade,
+            'jenjang' => $jenjang,
             'gender' => $gender,
             'phone' => $phone
         ];
